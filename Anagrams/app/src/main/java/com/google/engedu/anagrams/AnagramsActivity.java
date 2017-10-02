@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,43 +94,22 @@ public class AnagramsActivity extends AppCompatActivity {
         }
         resultView.append(Html.fromHtml(String.format("<font color=%s>%s</font><BR>", color, word)));
         editText.setText("");
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_anagrams, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        Button fab = (Button) findViewById(R.id.fab);
+        //fab.show();
     }
 
     public boolean defaultAction(View view) {
         TextView gameStatus = (TextView) findViewById(R.id.gameStatusView);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Button fab = (Button) findViewById(R.id.fab);
         EditText editText = (EditText) findViewById(R.id.editText);
         TextView resultView = (TextView) findViewById(R.id.resultView);
         if (currentWord == null) {
             currentWord = dictionary.pickGoodStarterWord();
             anagrams = dictionary.getAnagramsWithOneMoreLetter(currentWord);
             gameStatus.setText(Html.fromHtml(String.format(START_MESSAGE, currentWord.toUpperCase(), currentWord)));
-            fab.setImageResource(android.R.drawable.ic_menu_help);
-            fab.hide();
+            fab.setText("Help");
+            //fab.setImageResource(android.R.drawable.ic_menu_help);
+            //fab.hide();
             resultView.setText("");
             editText.setText("");
             editText.setEnabled(true);
@@ -139,7 +119,8 @@ public class AnagramsActivity extends AppCompatActivity {
         } else {
             editText.setText(currentWord);
             editText.setEnabled(false);
-            fab.setImageResource(android.R.drawable.ic_media_play);
+            fab.setText("Play");
+//            fab.setImageResource(android.R.drawable.ic_media_play);
             currentWord = null;
             resultView.append(TextUtils.join("\n", anagrams));
             gameStatus.append(" Hit 'Play' to start again");

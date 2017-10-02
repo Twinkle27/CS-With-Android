@@ -34,6 +34,27 @@ public class TrieNode {
         isWord = false;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// RECURSIVE
     public void add(String s) {
         if(s.length()==0){
             isWord=true;
@@ -45,14 +66,66 @@ public class TrieNode {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public boolean isWord(String s) {
         if(s.length()==0){
             return isWord;
         }else{
             String key = Character.toString(s.charAt(0));
-            return children.containsKey(key) && children.get(key).isWord(s.substring(1));
+            return children.containsKey(key) &&
+                  children.get(key).isWord(s.substring(1));
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public String getAnyWordStartingWith(String s) {
         if(s == null || s.length()==0 ){
@@ -64,9 +137,24 @@ public class TrieNode {
             String key = Character.toString(s.charAt(0));
             if(!children.containsKey(key))
                 return null;
-            return children.get(key).getAnyWordStartingWith(s.substring(1));
+            return children.get(key).
+                    getAnyWordStartingWith(s.substring(1));
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public String getGoodWordStartingWith(String s) {
         return null;

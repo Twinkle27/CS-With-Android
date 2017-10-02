@@ -50,7 +50,7 @@ public class AnagramDictionary {
         while((line = in.readLine()) != null) {
             String word = line.trim();
             String sortedWord = getSortedWord(word);
-            wordList.add(word);
+            //wordList.add(word);
             wordSet.add(word);
             if(!lettersToWord.containsKey(sortedWord))
                 lettersToWord.put(sortedWord,new ArrayList<String>());
@@ -66,7 +66,7 @@ public class AnagramDictionary {
         return wordSet.contains(word) && !word.contains(base);
     }
 
-    public List<String> getAnagrams(String targetWord) {
+    /*public List<String> getAnagrams(String targetWord) {
         ArrayList<String> result = new ArrayList<String>();
         for(String word:wordList){
             if(word.length() == targetWord.length() &&
@@ -75,7 +75,7 @@ public class AnagramDictionary {
             }
         }
         return result;
-    }
+    }*/
 
     private String getSortedWord(String word){
         char[] word_array = word.toCharArray();
